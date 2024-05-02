@@ -1,0 +1,50 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/jschwender/.ohos/config/default_RustDemo_MhDZ2m4JeiQ0BH5KnpnnRKmIQwZgTKMhi8Xfan_R_sE=.cer",
+          "storePassword": "0000001B51C487A32B39790581AA0F763FCBAF5CEEAD373F1CC5D75D50CC96FDB2C16A63733C5F7B97A8BD",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B55925CDE529D2DAE4F1C19FEB488E276322909DECA78EC80146E8079645788B343C18D1E70C38E",
+          "profile": "/Users/jschwender/.ohos/config/default_RustDemo_MhDZ2m4JeiQ0BH5KnpnnRKmIQwZgTKMhi8Xfan_R_sE=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/jschwender/.ohos/config/default_RustDemo_MhDZ2m4JeiQ0BH5KnpnnRKmIQwZgTKMhi8Xfan_R_sE=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compileSdkVersion": "4.1.0(11)",
+        "compatibleSdkVersion": "4.1.0(11)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
