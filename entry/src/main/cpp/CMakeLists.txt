@@ -16,15 +16,12 @@ target_link_libraries(entry PUBLIC libace_napi.z.so)
 
 include(FetchContent)
 
-# Corrosion v0.5 requires at least CMake 3.22, so we are stuck with
+# Note: Corrosion v0.5 requires at least CMake 3.22, so we are stuck with
 # Corrosion v0.4 until the shipped CMake version is updated.
-FetchContent_Declare(
-    Corrosion
-    GIT_REPOSITORY https://github.com/corrosion-rs/corrosion.git
-    GIT_TAG master
-)
-set(Rust_TOOLCHAIN beta)
-FetchContent_MakeAvailable(Corrosion)
+# Note: We require at least Rust 1.78 for OpenHarmony and stable rust.
+# set(Rust_TOOLCHAIN 1.78)
+
+add_subdirectory(corrosion)
 
 corrosion_import_crate(MANIFEST_PATH rust_napi_demo/Cargo.toml PROFILE release)
 # ....

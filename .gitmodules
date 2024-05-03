@@ -1,0 +1,3 @@
+[submodule "entry/src/main/cpp/corrosion"]
+	path = entry/src/main/cpp/corrosion
+	url = https://github.com/corrosion-rs/corrosion.git
