@@ -33,7 +33,7 @@ jobs:
           echo "NODE_PATH=${PWD}/node_modules" >> $GITHUB_ENV
       - name: Build (arch ${{ matrix.arch }} )
         env:
-          DEVECO_SDK_HOME: "${OHOS_BASE_SDK_HOME}"
+          DEVECO_SDK_HOME: ${{steps.setup_sdk.outputs.ohos_base_sdk_home}}
         run: |
           echo "OHOS_SDK_NATIVE: ${OHOS_SDK_NATIVE}, OHOS_BASE_SDK_HOME: ${OHOS_BASE_SDK_HOME}"
           node "${HVIGOR_PATH}/node_modules/@ohos/hvigor/bin/hvigor.js" --no-daemon assembleHap 
