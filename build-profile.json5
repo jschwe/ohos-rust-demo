@@ -17,6 +17,14 @@
     ],
     "products": [
       {
+        "name": "ohos",
+        "signingConfig": "default",
+        "compileSdkVersion": 11,
+        "compatibleSdkVersion": 11,
+        "targetSdkVersion": 11,
+        "runtimeOS": "OpenHarmony",
+      },
+      {
         "name": "default",
         "signingConfig": "default",
         "compatibleSdkVersion": "4.1.0(11)",
@@ -40,7 +48,8 @@
         {
           "name": "default",
           "applyToProducts": [
-            "default"
+            "ohos",
+            "default",
           ]
         }
       ]

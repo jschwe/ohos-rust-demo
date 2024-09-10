@@ -2,7 +2,7 @@ name: OpenHarmony
 on: push
 
 jobs:
-  build:
+  ohos_build:
     name: OpenHarmony Build
     runs-on: ubuntu-22.04
     strategy:
@@ -35,4 +35,39 @@ jobs:
         run: |
           export DEVECO_SDK_HOME=${OHOS_BASE_SDK_HOME}
           echo "OHOS_SDK_NATIVE: ${OHOS_SDK_NATIVE}, OHOS_BASE_SDK_HOME: ${OHOS_BASE_SDK_HOME}"
-          node "${HVIGOR_PATH}/node_modules/@ohos/hvigor/bin/hvigor.js" --no-daemon assembleHap 
+          node "${HVIGOR_PATH}/node_modules/@ohos/hvigor/bin/hvigor.js" --no-daemon -p product=ohos assembleHap 
+
+  hos_build:
+    name: HarmonyOS Build
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        arch: ['aarch64-unknown-linux-ohos']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup OpenHarmony SDK
+        id: setup_sdk
+        uses: openharmony-rs/setup-ohos-sdk@more_assertions # TODO: this needs to be updated
+        with:
+          version: "4.1"
+          components: "native;toolchains;ets;js;previewer"
+          cache: true
+          fixup-path: true
+      - name: Install node for hvigor
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install hvigor modules
+        run: |
+          mkdir ~/hvigor-installation
+          cd ~/hvigor-installation
+          echo "@ohos:registry=https://repo.harmonyos.com/npm/" > .npmrc
+          npm install "@ohos/hvigor@5" "@ohos/hvigor-ohos-plugin@5"
+          ls -la
+          echo "HVIGOR_PATH=$PWD" >> $GITHUB_ENV
+          echo "NODE_PATH=${PWD}/node_modules" >> $GITHUB_ENV
+      - name: Build (arch ${{ matrix.arch }} )
+        run: |
+          export DEVECO_SDK_HOME=${OHOS_BASE_SDK_HOME}
+          echo "OHOS_SDK_NATIVE: ${OHOS_SDK_NATIVE}, OHOS_BASE_SDK_HOME: ${OHOS_BASE_SDK_HOME}"
+          node "${HVIGOR_PATH}/node_modules/@ohos/hvigor/bin/hvigor.js" --no-daemon -p product=default assembleHap
