@@ -30,6 +30,7 @@ jobs:
           npm install "@ohos/hvigor@5" "@ohos/hvigor-ohos-plugin@5"
           ls -la
           echo "HVIGOR_PATH=$PWD" >> $GITHUB_ENV
+          echo "NODE_PATH=${PWD}/node_modules" >> $GITHUB_ENV
       - name: Build (arch ${{ matrix.arch }} )
         run: |
           echo "OHOS_SDK_NATIVE: ${OHOS_SDK_NATIVE}, OHOS_BASE_SDK_HOME: ${OHOS_BASE_SDK_HOME}"
