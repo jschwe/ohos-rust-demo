@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup OpenHarmony SDK
         id: setup_sdk
-        uses: openharmony-rs/setup-ohos-sdk@main # TODO: this needs to be updated
+        uses: openharmony-rs/setup-ohos-sdk@more_assertions # TODO: this needs to be updated
         with:
           version: "4.1"
           components: "native;toolchains;ets;js;previewer"
@@ -32,6 +32,8 @@ jobs:
           echo "HVIGOR_PATH=$PWD" >> $GITHUB_ENV
           echo "NODE_PATH=${PWD}/node_modules" >> $GITHUB_ENV
       - name: Build (arch ${{ matrix.arch }} )
+        env:
+          DEVECO_SDK_HOME: "${OHOS_BASE_SDK_HOME}"
         run: |
           echo "OHOS_SDK_NATIVE: ${OHOS_SDK_NATIVE}, OHOS_BASE_SDK_HOME: ${OHOS_BASE_SDK_HOME}"
           node "${HVIGOR_PATH}/node_modules/@ohos/hvigor/bin/hvigor.js" --no-daemon assembleHap 
