@@ -33,4 +33,4 @@ jobs:
       - name: Build (arch ${{ matrix.arch }} )
         run: |
           echo "OHOS_SDK_NATIVE: ${OHOS_SDK_NATIVE}, OHOS_BASE_SDK_HOME: ${OHOS_BASE_SDK_HOME}"
-          hvigor --no-daemon assembleHap 
+          node "${HVIGOR_PATH}/node_modules/@ohos/hvigor/bin/hvigor.js" --no-daemon assembleHap 
