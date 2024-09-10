@@ -13,19 +13,3 @@ include_directories(${NATIVERENDER_ROOT_PATH}
 
 add_library(entry SHARED napi_init.cpp)
 target_link_libraries(entry PUBLIC libace_napi.z.so)
-
-include(FetchContent)
-
-FetchContent_Declare(
-    Corrosion
-    GIT_REPOSITORY https://github.com/corrosion-rs/corrosion.git
-    GIT_TAG stable/v0.5
-)
-FetchContent_MakeAvailable(Corrosion)
-
-if(Rust_VERSION VERSION_LESS "1.78")
-    message(STATUS "OpenHarmony OS requires at least Rust 1.78.")
-endif()
-
-corrosion_import_crate(MANIFEST_PATH rust_napi_demo/Cargo.toml PROFILE release)
-# ....

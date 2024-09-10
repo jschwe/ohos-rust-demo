@@ -7,6 +7,5 @@
   "license": "",
   "dependencies": {
     "libentry.so": "file:./src/main/cpp/types/libentry",
-    "librust_napi_demo.so": "file:./src/main/cpp/types/librust_napi_demo"
   }
 }

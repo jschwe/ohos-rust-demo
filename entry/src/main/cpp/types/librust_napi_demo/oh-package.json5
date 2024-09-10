@@ -1,6 +1,0 @@
-{
-  "name": "librust_napi_demo.so",
-  "types": "./index.d.ts",
-  "version": "",
-  "description": "Please describe the basic information."
-}

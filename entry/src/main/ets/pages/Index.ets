@@ -1,7 +1,7 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 // Switch between C++, Rust by changing the imported so.
-// import testNapi from 'libentry.so';
-import testNapi from 'librust_napi_demo.so';
+import testNapi from 'libentry.so';
+// import testNapi from 'librust_napi_demo.so';
 
 function add(a: number, b: number) {
   return a + b;
