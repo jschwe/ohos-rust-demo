@@ -1,5 +1,5 @@
 # the minimum version of CMake.
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION 3.20)
 project(RustDemo)
 
 set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
@@ -19,7 +19,7 @@ include(FetchContent)
 FetchContent_Declare(
     Corrosion
     GIT_REPOSITORY https://github.com/corrosion-rs/corrosion.git
-    GIT_TAG stable/v0.5
+    GIT_TAG master
 )
 FetchContent_MakeAvailable(Corrosion)
 
@@ -28,4 +28,3 @@ if(Rust_VERSION VERSION_LESS "1.78")
 endif()
 
 corrosion_import_crate(MANIFEST_PATH rust_napi_demo/Cargo.toml PROFILE release)
-# ....
