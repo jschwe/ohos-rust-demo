@@ -5,14 +5,13 @@ This is a simple demo application that showcases using native code in your OpenH
 Both a cpp and a Rust library are provided, which can both perform the same calculation.
 You can switch between them by swapping the commented out `import` statement.
 
-### Manual patching required
+## Background
 
-The CMake version shipped in the OH SDK is too old for Corrosion v0.5, at least 3.22 is required.
-You can navigate to the SDK directory, go to `native/build-tools/cmake/bin` and replace
-the `cmake` executable with a symlink to a more recent CMake version.
-Additionally you need to copy `native/build-tools/cmake/share/cmake-3.16/Modules/Platform/OHOS.cmake` 
-to the corresponding directory of the replacement CMake version.
+We use [corrosion] to integrate our rust project (under `src/main/cpp/rust_napi_demo`) into the CMake build.
+This means the rust crate can be automatically integrated into the build of the .hap for OpenHarmony.
 
-Corrosion is not necessarily required for importing Rust projects, but it does make things
-easier. In the future perhaps the required feature of respecting `CMAKE_XXX_OUTPUT_DIRECTORY`
-might be partially backported to Corrosion v0.4, which still supports our CMake version.
+We also use the [`napi-ohos`](https://github.com/ohos-rs/ohos-rs) crate, which allows us to easily call Rust functions
+from the ArkTS side. This is done by the `#[napi]` macro. Please consult with the napi-ohos and napi-rs documentation
+for more details.
+
+[corrosion]: https://github.com/corrosion-rs/corrosion
